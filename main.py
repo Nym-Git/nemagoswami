@@ -14,8 +14,8 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://192.168.1.35:6996", "https://nemachandragoswami.netlify.app"],  # Change to frontend domain in production
-    allow_credentials=False,
+    allow_origins=["*"],  # Change to frontend domain in production
+    allow_credentials=True,
     allow_methods=["*"],
 )
 
