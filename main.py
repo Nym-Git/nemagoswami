@@ -5,6 +5,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -89,3 +90,15 @@ async def send_email(request: EmailRequest):
         return {"success": True, "message": "Email has been sent successfully. Please check your inbox or spam folder for confirmation. We will revert to you soon."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# Add a root endpoint for health checks
+@app.get("/")
+async def root():
+    return {"status": "Email service is running"}
+
+if __name__ == "__main__":
+    # Get port from environment variable (Render sets this)
+    port = int(os.getenv("PORT", 8000))
+    
+    # Run the application on 0.0.0.0 (all network interfaces)
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)
