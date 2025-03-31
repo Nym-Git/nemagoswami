@@ -41,7 +41,7 @@ async def send_email(request: EmailRequest):
         msg = EmailMessage()
         msg["From"] = FROM_EMAIL
         msg["To"] = request.to_email
-        msg["Subject"] = f"Response to Your Inquiry on 'nemachandragoswami.netlify.app'"
+        msg["Subject"] = f"Response to Your Inquiry on 'nemachandragoswami.netlify.app' | {request.subject}"
         msg["Cc"] = "nemagoswami00@gmail.com"
         
         email_body = f'''
