@@ -16,7 +16,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://192.168.1.35:6996", "https://nemachandragoswami.netlify.app"],  # Change to frontend domain in production
     allow_credentials=False,
-    allow_methods=["POST"],
+    allow_methods=["*"],
 )
 
 # Get SMTP credentials from environment variables
